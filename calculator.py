@@ -1,15 +1,16 @@
 from tkinter import *
 
 # # displayed entry
-# global entry
-# entry = ''
+entry = ''
 
 def write_num(num):
-    label['text'] += num
+    global entry
+    entry += num
 
 def write_op(sym):
-    if label['text'][-1] not in ('1','2','3','4','5','6','7','8','9','0'):
-        label['text'] += sym
+    global entry
+    if entry[-1] not in ('1','2','3','4','5','6','7','8','9','0'):
+        entry += sym
 
 root = Tk(className='Calculator')
 
@@ -33,7 +34,7 @@ frame = Frame(root, bg="gray", bd=5)
 frame.place(relx=0.5, rely=0.25, relwidth=0.9, relheight=0.6, anchor="n")
 
 # widgets: buttons and a label
-label = Label(upper_frame, bg='lightgray', font=('Narkism',14))
+label = Label(upper_frame, bg='lightgray', font=('Narkism',14), text=entry)
 button1 = Button(frame, text='0', bg=numcolor, activebackground=clickcolor, command=write_num('0'))
 button2 = Button(frame, text='.', bg=numcolor, activebackground=clickcolor, command=write_op('.'))
 button3 = Button(frame, text='+', bg=othercolor, activebackground=clickcolor, command=write_op('+'))
@@ -84,32 +85,8 @@ button22.grid(row=0, column=4, sticky=NSEW, padx=bpad, pady=bpad)
 
 # below code and stick settings above required to make buttons sized relative to frame
 for i in range(1,21):
-    exec(frame.grid_columnconfigure(i,weight=1))
+    exec('frame.grid_columnconfigure('+str(i)+',weight=1)')
     
-
-# frame.grid_columnconfigure(1,weight=1)
-# frame.grid_columnconfigure(2,weight=1)
-# frame.grid_columnconfigure(3,weight=1)
-# frame.grid_columnconfigure(4,weight=1)
-# frame.grid_columnconfigure(5,weight=1)
-# frame.grid_columnconfigure(6,weight=1)
-# frame.grid_columnconfigure(7,weight=1)
-# frame.grid_columnconfigure(8,weight=1)
-# frame.grid_columnconfigure(9,weight=1)
-# frame.grid_columnconfigure(10,weight=1)
-# frame.grid_columnconfigure(11,weight=1)
-# frame.grid_columnconfigure(12,weight=1)
-# frame.grid_columnconfigure(13,weight=1)
-# frame.grid_columnconfigure(14,weight=1)
-# frame.grid_columnconfigure(15,weight=1)
-# frame.grid_columnconfigure(16,weight=1)
-# frame.grid_columnconfigure(17,weight=1)
-# frame.grid_columnconfigure(18,weight=1)
-# frame.grid_columnconfigure(19,weight=1)
-# frame.grid_columnconfigure(20,weight=1)
-# frame.grid_columnconfigure(21,weight=1)
-
-
 
 root.mainloop()
 
